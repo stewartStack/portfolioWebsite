@@ -13,7 +13,7 @@ export type Project = {
 export const projects: Project[] = [
     {
         slug: "battery-dispatch",
-        title: "Battery Dispatch Optimizer",
+        title: "Battery Dispatch Optimizer",pu
         summary: "Reduced peak charges via ML-backed dispatch.",
         year: 2025,
         tags: ["energy", "ml"],
