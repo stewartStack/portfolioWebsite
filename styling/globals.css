@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* Tailwind base, components, utilities */
+/*@import "../node_modules/tailwindcss/dist/lib.d.mts";
+*/
+/* -------------------------------
+   Theme tokens (Tailwind v4 style)
+   ------------------------------- */
+@theme {
+  --color-bg: oklch(98% 0 0);           /* light background */
+  --color-fg: oklch(20% 0 0);           /* light text */
+  --color-accent: oklch(70% 0.12 155);  /* green accent */
+  --radius: 1.25rem;                    /* rounded-2xl vibe */
+  --shadow-card: 0 8px 24px -12px oklch(0 0 0 / .25);
+}
+
+/* Dark theme via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-bg: oklch(14% 0 0);
+    --color-fg: oklch(96% 0 0);
+    --color-accent: oklch(75% 0.12 155);
+  }
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+/* -------------------------------
+   Base element resets
+   ------------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Link styles */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  position: relative;
+}
+a:hover {
+  opacity: 0.9;
+}
+a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: -2px; height: 2px;
+  background: var(--color-accent);
+  transition: right 160ms ease;
+}
+a:hover::after {
+  right: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  a::after { transition: none; }
+}
+
+/* -------------------------------
+   Reusable utility classes
+   ------------------------------- */
+
+/* Card primitive */
+.card {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  background: var(--color-bg);
+}
+
+/* Button primitive */
+.btn {
+  display: inline-block;
+  border-radius: calc(var(--radius) - .5rem);
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Reveal animation (scroll-in) */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.reveal[data-inview="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typography tweaks */
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+.prose img {
+  border-radius: calc(var(--radius) - .5rem);
+}
