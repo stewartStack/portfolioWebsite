@@ -1,6 +1,8 @@
 import "@/styling/globals.css"
 import type { Metadata } from "next";
 import AutoHideHeader from "@/components/AutoHideHeader";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Your Name — Portfolio",
@@ -16,6 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <footer className="mx-auto max-w-5xl px-4 py-10 text-sm opacity-70">
         © {new Date().getFullYear()} Noah Stewart
       </footer>
+      <Analytics />
+      <SpeedInsights />
       </body>
       </html>
   );
