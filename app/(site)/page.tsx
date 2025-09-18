@@ -2,6 +2,50 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, useMemo } from "react";
 
+// --- Under-Construction popup (one-time per browser) ---
+function useFirstVisitFlag(key = "seenDevNotice") {
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        const seen = typeof window !== "undefined" && localStorage.getItem(key);
+        if (!seen) setOpen(true);
+    }, [key]);
+    const dismiss = () => {
+        try { localStorage.setItem(key, "1"); } catch {}
+        setOpen(false);
+    };
+    return { open, dismiss };
+}
+
+function UnderConstructionDialog({
+                                     open,
+                                     onClose,
+                                 }: { open: boolean; onClose: () => void }) {
+    if (!open) return null;
+    return (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+             onClick={onClose}>
+            <div
+                role="dialog"
+                aria-modal="true"
+                className="max-w-md w-full rounded-2xl bg-background/95 border shadow-xl p-5"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <h2 className="text-lg font-semibold mb-2">Heads up 🚧</h2>
+                <p className="text-sm opacity-80 mb-4">
+                    This site is currently under development. Some features or pages may be incomplete.
+                </p>
+                <button
+                    onClick={onClose}
+                    className="rounded-lg border px-3 py-1.5 text-sm hover:bg-foreground/5"
+                >
+                    Continue
+                </button>
+            </div>
+        </div>
+    );
+}
+
+
 function shuffleArray<T>(array: T[]): T[] {
     // Create a shallow copy to avoid modifying the original array
     const shuffledArray = [...array];
@@ -25,43 +69,51 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // ------------ Carousel ------------
-type Slide = { src: string; alt: string };
-let slides: Slide[] = [
-    { src: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.jpg", alt: "Columbia Picture" },
-    { src: "/images/carousel/IMG_0839.jpg", alt: "Lax Trophy Pic" },
-    { src: "/images/carousel/IMG_1422.jpg", alt: "Gameday Field Pic" },
-    { src: "/images/carousel/IMG_1606.jpg", alt: "PPL R&D Presentation" },
-    { src: "/images/carousel/IMG_1611.jpg", alt: "PPL Presentation 2" },
-    { src: "/images/carousel/IMG_1948.jpeg", alt: "PPL Solar Site" },
-    { src: "/images/carousel/IMG_4481.jpg", alt: "Garba" },
-    { src: "/images/carousel/IMG_4657.jpg", alt: "Coal Mining Trip" },
-    { src: "/images/carousel/IMG_4660.jpg", alt: "Coal Mining 2" },
-    { src: "/images/carousel/IMG_7969.jpg", alt: "GSE Certificate" },
-    { src: "/images/carousel/IMG_7975.jpg", alt: "GSE Team Pic" },
-    { src: "/images/carousel/IMG_7976.jpg", alt: "GSE Celebration" },
-    { src: "/images/carousel/IMG_7978.jpg", alt: "GSE Team Pic 2" },
-    { src: "/images/carousel/IMG_9374.jpg", alt: "Solar Sheep" },
-    { src: "/images/carousel/IMG_9396.jpg", alt: "PPL Site" },
-    { src: "/images/carousel/IMG_9413.jpg", alt: "PPL Solar Site" },
-    { src: "/images/carousel/KEV_0807a.jpg", alt: "Lax Game" },
+type Slide = { id: string; src: string; alt: string };
+
+const slides: Slide[] = [
+    {
+        id: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.jpg",
+        src: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.jpg",
+        alt: "Columbia Picture",
+    },
+    { id: "/images/carousel/IMG_0839.jpg", src: "/images/carousel/IMG_0839.jpg", alt: "Lax Trophy Pic" },
+    { id: "/images/carousel/IMG_1422.jpg", src: "/images/carousel/IMG_1422.jpg", alt: "Gameday Field Pic" },
+    { id: "/images/carousel/IMG_1606.jpg", src: "/images/carousel/IMG_1606.jpg", alt: "PPL R&D Presentation" },
+    { id: "/images/carousel/IMG_1611.jpg", src: "/images/carousel/IMG_1611.jpg", alt: "PPL Presentation 2" },
+    { id: "/images/carousel/IMG_1948.jpeg", src: "/images/carousel/IMG_1948.jpeg", alt: "PPL Solar Site" },
+    { id: "/images/carousel/IMG_4481.jpg", src: "/images/carousel/IMG_4481.jpg", alt: "Garba" },
+    { id: "/images/carousel/IMG_4657.jpg", src: "/images/carousel/IMG_4657.jpg", alt: "Coal Mining Trip" },
+    { id: "/images/carousel/IMG_4660.jpg", src: "/images/carousel/IMG_4660.jpg", alt: "Coal Mining 2" },
+    { id: "/images/carousel/IMG_7969.jpg", src: "/images/carousel/IMG_7969.jpg", alt: "GSE Certificate" },
+    { id: "/images/carousel/IMG_7975.jpg", src: "/images/carousel/IMG_7975.jpg", alt: "GSE Team Pic" },
+    { id: "/images/carousel/IMG_7976.jpg", src: "/images/carousel/IMG_7976.jpg", alt: "GSE Celebration" },
+    { id: "/images/carousel/IMG_7978.jpg", src: "/images/carousel/IMG_7978.jpg", alt: "GSE Team Pic 2" },
+    { id: "/images/carousel/IMG_9374.jpg", src: "/images/carousel/IMG_9374.jpg", alt: "Solar Sheep" },
+    { id: "/images/carousel/IMG_9396.jpg", src: "/images/carousel/IMG_9396.jpg", alt: "PPL Site" },
+    { id: "/images/carousel/IMG_9413.jpg", src: "/images/carousel/IMG_9413.jpg", alt: "PPL Solar Site" },
+    { id: "/images/carousel/KEV_0807a.jpg", src: "/images/carousel/KEV_0807a.jpg", alt: "Lax Game" },
 ];
 
 function Carousel() {
     const trackRef = useRef<HTMLDivElement | null>(null);
     const rafRef = useRef<number | null>(null);
-    const speedRef = useRef(4);           // ~pixels per 16ms frame; increase to scroll faster
+    const speedRef = useRef(4); // ~pixels per 16ms frame; increase to scroll faster
     const pausedRef = useRef(false);
     const hoverRef = useRef(false);
     const isDraggingRef = useRef(false);
     const dragStartXRef = useRef<number | null>(null);
     const dragStartLeftRef = useRef<number | null>(null);
     const startRef = useRef(0); // pixel position of the middle block start
-    const itemRef  = useRef(0); // measured width of one card + gap
+    const itemRef = useRef(0); // measured width of one card + gap
     const blockRef = useRef(0); // width of 1 block (n * item)
-    const [order, setOrder] = useState(slides);      // server & initial client render match
+
+    // Keep the SSR and initial client render in the same order,
+    // then shuffle after hydration.
+    const [order, setOrder] = useState<Slide[]>(slides);
 
     useEffect(() => {
-        setOrder(shuffleArray(slides));                 // shuffle after hydration
+        setOrder(shuffleArray(slides)); // shuffle after hydration
     }, []);
 
     const BASE = order.length;
@@ -73,7 +125,8 @@ function Carousel() {
         const onEnter = () => (hoverRef.current = true);
         const onLeave = () => (hoverRef.current = false);
         const onPointer = () => {
-            pausedRef.current = true; setTimeout(() => (pausedRef.current = false), 2000);
+            pausedRef.current = true;
+            setTimeout(() => (pausedRef.current = false), 2000);
         };
         el.addEventListener("mouseenter", onEnter);
         el.addEventListener("mouseleave", onLeave);
@@ -92,12 +145,13 @@ function Carousel() {
         const el = trackRef.current;
         if (!el) return;
 
-        //el.style.scrollBehavior = "auto";
-
         let raf: number | null = null;
         const centerOnce = () => {
             const first = el.children[0] as HTMLElement | undefined;
-            if (!first) { raf = requestAnimationFrame(centerOnce); return; }
+            if (!first) {
+                raf = requestAnimationFrame(centerOnce);
+                return;
+            }
 
             const style = getComputedStyle(el);
             const gap = parseFloat(style.gap || style.columnGap || "0");
@@ -107,9 +161,9 @@ function Carousel() {
                 // ensure CSS doesn't animate this positioning
                 el.style.scrollBehavior = "auto";
                 el.scrollLeft = item * BASE;
-                startRef.current = el.scrollLeft;      // save the origin of the middle block
-                itemRef.current  = item;               // one card + gap
-                blockRef.current = item * slides.length;
+                startRef.current = el.scrollLeft; // save the origin of the middle block
+                itemRef.current = item; // one card + gap
+                blockRef.current = item * BASE; // width of a single block equals BASE * item
                 // restore default (no smooth) for RAF control
                 el.style.scrollBehavior = "auto";
                 return;
@@ -118,7 +172,9 @@ function Carousel() {
         };
 
         raf = requestAnimationFrame(centerOnce);
-        return () => { if (raf) cancelAnimationFrame(raf); };
+        return () => {
+            if (raf) cancelAnimationFrame(raf);
+        };
     }, [BASE]);
 
     useEffect(() => {
@@ -127,8 +183,8 @@ function Carousel() {
 
         const onPointerDown = (e: PointerEvent) => {
             isDraggingRef.current = true;
-            pausedRef.current = true;   // pause auto-scroll while dragging
-            hoverRef.current = true;    // treat as hovered
+            pausedRef.current = true; // pause auto-scroll while dragging
+            hoverRef.current = true; // treat as hovered
             dragStartXRef.current = e.clientX;
             dragStartLeftRef.current = el.scrollLeft;
             el.setPointerCapture(e.pointerId);
@@ -141,7 +197,7 @@ function Carousel() {
             const startLeft = dragStartLeftRef.current!;
             const dx = e.clientX - startX;
             el.scrollLeft = startLeft - dx; // invert for natural horizontal drag
-            e.preventDefault();             // prevent text selection while dragging
+            e.preventDefault(); // prevent text selection while dragging
         };
 
         const end = (e: PointerEvent) => {
@@ -156,7 +212,7 @@ function Carousel() {
         };
 
         el.addEventListener("pointerdown", onPointerDown);
-        el.addEventListener("pointermove", onPointerMove, { passive: false });
+        el.addEventListener("pointermove", onPointerMove as any, { passive: false });
         el.addEventListener("pointerup", end);
         el.addEventListener("pointercancel", end);
 
@@ -167,7 +223,6 @@ function Carousel() {
             el.removeEventListener("pointercancel", end);
         };
     }, []);
-
 
     useEffect(() => {
         const el = trackRef.current;
@@ -186,15 +241,15 @@ function Carousel() {
             }
 
             // wrap-around relative to the middle block, factoring in viewport width
-            const start = startRef.current;      // left edge of middle copy
-            const block = blockRef.current;      // width of one block (n * item)
-            const unit  = itemRef.current;       // one card + gap
-            const EPS   = 0.5;
+            const start = startRef.current; // left edge of middle copy
+            const block = blockRef.current; // width of one block (n * item)
+            const unit = itemRef.current; // one card + gap
+            const EPS = 0.5;
             if (block > 0 && unit > 0) {
                 // Right edge of the viewport crosses the end of the middle block:
-                const rightWrapAt = .9 * (start + block - el.clientWidth - EPS);
+                const rightWrapAt = 0.9 * (start + block - el.clientWidth - EPS);
                 // Left edge goes before (a bit left of) the start of the middle block:
-                const leftWrapAt  = start - unit + EPS;  // leave ~1 card of slack
+                const leftWrapAt = start - unit + EPS; // leave ~1 card of slack
                 if (el.scrollLeft > rightWrapAt) {
                     el.scrollLeft -= block; // jump back by exactly one block
                 } else if (el.scrollLeft < leftWrapAt) {
@@ -206,29 +261,33 @@ function Carousel() {
         };
 
         rafRef.current = requestAnimationFrame(step);
-        return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+        return () => {
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        };
     }, []);
-
 
     return (
         <section aria-label="Photo carousel" className="space-y-3">
             <div className="relative rounded-[var(--radius)] overflow-hidden">
-                <div
-                    ref={trackRef}
-                    className="flex gap-2 overflow-x-auto pb-2 no-scrollbar cursor-grab"
-                >
-                    {loopSlides.map((s, i) => (
-                        <div key={i} className="relative w-48 shrink-0 aspect-[4/3] rounded-lg shadow overflow-hidden">
-                            <Image
-                                src={s.src}
-                                alt={s.alt}
-                                fill
-                                priority={i === BASE} // prioritize the first card in the middle block
-                                className="object-cover"
-                                sizes="256px"
-                            />
-                        </div>
-                    ))}
+                <div ref={trackRef} className="flex gap-2 overflow-x-auto pb-2 no-scrollbar cursor-grab">
+                    {loopSlides.map((s, i) => {
+                        const copyIndex = Math.floor(i / BASE); // 0,1,2 for each of the 3 blocks
+                        return (
+                            <div
+                                key={`${s.id}-${copyIndex}`}
+                                className="relative w-48 shrink-0 aspect-[4/3] rounded-lg shadow overflow-hidden"
+                            >
+                                <Image
+                                    src={s.src}
+                                    alt={s.alt}
+                                    fill
+                                    priority={i === BASE} // prioritize the first card in the middle block
+                                    className="object-cover"
+                                    sizes="256px"
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
@@ -325,9 +384,12 @@ function Venn({ className = "" }: VennProps) {
 
 export default function Home() {
     useScrollReveal();
+    const { open, dismiss } = useFirstVisitFlag("seenDevNotice");
+
 
     return (
         <section className="space-y-16">
+            <UnderConstructionDialog open={open} onClose={dismiss} />
             {/* Hero / Carousel */}
             <div className="space-y-6">
                 <h1 className="text-4xl/tight font-bold">
@@ -391,11 +453,11 @@ export default function Home() {
 
             {/* (Optional) Quick links */}
             <section className="reveal grid gap-4 sm:grid-cols-2">
-                <a href="/projects" className="rounded-xl border p-4 hover:shadow">
+                <a href="/projects" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
                     <h3 className="font-semibold">Featured Projects →</h3>
                     <p className="text-sm opacity-80">Case studies with measurable impact.</p>
                 </a>
-                <a href="/notes" className="rounded-xl border p-4 hover:shadow">
+                <a href="/notes" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
                     <h3 className="font-semibold">Latest Notes →</h3>
                     <p className="text-sm opacity-80">Algorithms, probability, systems.</p>
                 </a>

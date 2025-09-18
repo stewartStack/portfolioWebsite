@@ -251,7 +251,7 @@ a:focus-visible {
 }
 .venn-bullets text, .venn-cap {
   font-size: 14px;
-  fill: currentColor;
+  fill: var(--color-text);
   opacity: .85;
 }
 .venn-cap {
