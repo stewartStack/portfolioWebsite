@@ -52,7 +52,6 @@ export default function AutoHideHeader() {
                               className="text-text-muted hover:text-highlight link-underline transition-colors">Contact</Link>
                     </li>
                 </ul>
-
             </nav>
         </header>
     );
