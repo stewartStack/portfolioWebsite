@@ -457,7 +457,7 @@ export default function Home() {
                     <h3 className="font-semibold">Projects →</h3>
                     <p className="text-sm opacity-80">Work, school, and personal exploration.</p>
                 </a>
-                <a href="/notes" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
+                <a href="/resume" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
                     <h3 className="font-semibold">Resume →</h3>
                     <p className="text-sm opacity-80">My projects, experience, and skills.</p>
                 </a>
