@@ -73,8 +73,8 @@ type Slide = { id: string; src: string; alt: string };
 
 const slides: Slide[] = [
     {
-        id: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.jpg",
-        src: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.jpg",
+        id: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.JPG",
+        src: "/images/carousel/4dedd6a9-db65-4a49-bc87-e9ce24ec95f6.JPG",
         alt: "Columbia Picture",
     },
     { id: "/images/carousel/IMG_0839.JPG", src: "/images/carousel/IMG_0839.JPG", alt: "Lax Trophy Pic" },
