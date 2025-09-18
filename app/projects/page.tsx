@@ -43,7 +43,7 @@ export default function ProjectsPage() {
                     <a
                         key={p.slug}
                         href={`/projects/${p.slug}`}
-                        className="rounded-xl border p-4 hover:shadow-lg transition"
+                        className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition"
                     >
                         <h3 className="font-semibold">{p.title}</h3>
                         <p className="text-sm opacity-80">{p.summary}</p>

@@ -1,40 +1,26 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
+'use client';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function AutoHideHeader() {
-    const [hidden, setHidden] = useState(false);
-    const lastY = useRef(0);
-    const downAccum = useRef(0);
+    // 1) Start with a server-safe default that matches SSR.
+    const [hidden, setHidden] = useState(false);   // false on SSR & first CSR
 
-    const THRESHOLD = 125; // px from top before we allow hiding
-    const HOLD = 15;       // sustained downward px before we hide
-
+    // 2) Only attach scroll logic AFTER mount.
     useEffect(() => {
+        let lastY = window.scrollY;
+
         const onScroll = () => {
             const y = window.scrollY;
-            const dy = y - lastY.current;
-            lastY.current = y;
-
-            // Near top: always show
-            if (y <= THRESHOLD) {
-                setHidden(false);
-                downAccum.current = 0;
-                return;
-            }
-
-            if (dy > 0) {
-                // scrolling down: accumulate and hide after a bit
-                downAccum.current += dy;
-                if (downAccum.current > HOLD) setHidden(true);
-            } else if (dy < 0) {
-                // scrolling up: show immediately
-                downAccum.current = 0;
-                setHidden(false);
-            }
+            // hide when scrolling down and you've scrolled a bit
+            const shouldHide = y > lastY && y > 64;
+            setHidden(shouldHide);
+            lastY = y;
         };
 
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     return (
@@ -45,13 +31,13 @@ export default function AutoHideHeader() {
             ].join(" ")}
         >
             <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-                <a href="/" className="font-semibold">Noah Stewart</a>
-                <ul className="flex gap-4 text-sm">
-                    <li><a href="/projects" className="hover:underline">Projects</a></li>
-                    <li><a href="/readings" className="hover:underline">Readings</a></li>
-                    <li><a href="/research" className="hover:underline">Research</a></li>
-                    <li><a href="/resume" className="hover:underline">Resume</a></li>
-                    <li><a href="/contact" className="hover:underline">Contact</a></li>
+                <Link href="/" className="font-semibold text-text">Noah Stewart</Link>
+                <ul className="flex gap-4 text-sm font-stretch-condensed">
+                    <li><Link href="/projects" className="text-text-muted hover:text-highlight link-underline transition-colors">Projects</Link></li>
+                    <li><Link href="/readings" className="text-text-muted hover:text-highlight link-underline transition-colors">Readings</Link></li>
+                    <li><Link href="/research" className="text-text-muted hover:text-highlight link-underline transition-colors">Research</Link></li>
+                    <li><Link href="/resume" className="text-text-muted hover:text-highlight link-underline transition-colors">Resume</Link></li>
+                    <li><Link href="/contact" className="text-text-muted hover:text-highlight link-underline transition-colors">Contact</Link></li>
                 </ul>
             </nav>
         </header>

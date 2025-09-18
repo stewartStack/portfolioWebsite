@@ -1,95 +1,222 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: light dark;
-}
-
-/* Tailwind base, components, utilities */
-/*@import "../node_modules/tailwindcss/dist/lib.d.mts";
-*/
-/* -------------------------------
-   Theme tokens (Tailwind v4 style)
-   ------------------------------- */
+/* Executive Dark theme (OKLCH) */
+/* Tokens are declared via Tailwind v4 @theme so you get bg-*, text-*, etc. */
 @theme {
-  --color-bg: oklch(98% 0.01 250);        /* light background, soft white */
-  --color-fg: oklch(25% 0.02 250);        /* dark slate text */
-  --color-accent: oklch(65% 0.12 260);    /* professional blue accent */
-  --radius: 1.25rem;
-  --shadow-card: 0 8px 24px -12px oklch(0 0 0 / .25);
+  /* Core neutrals */
+  --color-bg: oklch(0.20 0.02 260);         /* page background (deep charcoal) */
+  --color-surface: oklch(0.28 0.02 260);    /* cards/sections */
+  --color-text: oklch(0.92 0.02 250);       /* primary text (near-white) */
+  --color-text-muted: oklch(0.70 0.02 250); /* secondary text */
+
+  /* Brand colors */
+  --color-primary: oklch(0.65 0.14 240);    /* trusted blue */
+  --color-accent: oklch(0.72 0.12 80);      /* premium gold accent */
+  --color-highlight: oklch(0.58 0.16 210);  /* teal-cyan for hovers/active */
+  --color-bright-accent: oklch(0.95 0.12 80);
+
+  /* Optional extra surfaces (slightly stepped) */
+  --color-surface-1: oklch(0.30 0.02 260);
+  --color-surface-2: oklch(0.33 0.02 260);
+  --color-surface-3: oklch(0.36 0.02 260);
+
+  /* Common radii & shadows */
+  --radius: 14px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.35);
+  --shadow-md: 0 6px 16px rgba(0,0,0,.35);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.45);
 }
 
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-bg: oklch(12% 0.02 250);      /* near black background */
-    --color-fg: oklch(92% 0.01 250);      /* light gray text */
-    --color-accent: oklch(70% 0.15 260);  /* brighter blue accent */
-  }
+/* Base styles */
+:root {
+  color-scheme: dark;
 }
 
-/* -------------------------------
-   Base element resets
-   ------------------------------- */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   background: var(--color-bg);
-  color: var(--color-fg);
+  color: var(--color-text);
   font-family: ui-sans-serif, system-ui, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Link styles */
+/* Typography */
+h1, h2, h3 {
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+p, li, small {
+  color: var(--color-text-muted);
+}
+
+/* Links */
 a {
-  color: var(--color-accent);
+  color: var(--color-primary);
   text-decoration: none;
   position: relative;
+  transition: color .15s ease;
 }
-a:hover {
-  opacity: 0.9;
+a:hover { color: var(--color-highlight); }
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-highlight) 40%, transparent);
+  border-radius: 4px;
 }
-a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 100%; bottom: -2px; height: 2px;
-  background: var(--color-accent);
-  transition: right 160ms ease;
+/* Elegant underline that animates in */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  transition: background-size .18s ease;
 }
-a:hover::after {
-  right: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  a::after { transition: none; }
-}
+.link-underline:hover { background-size: 100% 2px; }
 
-/* -------------------------------
-   Reusable utility classes
-   ------------------------------- */
-
-/* Card primitive */
+/* Cards */
 .card {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-card);
-  background: var(--color-bg);
+  box-shadow: var(--shadow-md);
+}
+.card--hover:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.card--muted { background: var(--color-surface-1); }
+.card--elevated { background: var(--color-surface-2); }
+.card--raised { background: var(--color-surface-3); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: calc(var(--radius) - 6px);
+  padding: .625rem 1rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform .15s ease, opacity .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+  cursor: pointer;
+}
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover { background: var(--color-highlight); }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+.btn-ghost:hover {
+  color: var(--color-highlight);
+  border-color: color-mix(in oklab, var(--color-highlight) 45%, transparent);
+  background: color-mix(in oklab, var(--color-highlight) 8%, transparent);
 }
 
-/* Button primitive */
-.btn {
-  display: inline-block;
-  border-radius: calc(var(--radius) - .5rem);
-  padding: 0.6rem 1rem;
-  font-weight: 500;
+.btn-accent {
   background: var(--color-accent);
-  color: var(--color-bg);
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  color: oklch(0.16 0.02 240);
 }
-.btn:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
+.btn-accent:hover {
+  background: color-mix(in oklab, var(--color-accent) 85%, var(--color-primary) 15%);
 }
-.btn:active {
-  transform: translateY(0);
+
+/* Badges / Chips */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  border-radius: 999px;
+  padding: .25rem .6rem;
+  font-size: .78rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in oklab, var(--color-text) 14%, transparent);
+  color: var(--color-text);
+  background: var(--color-surface-1);
 }
+.badge--accent {
+  color: oklch(0.20 0.02 250);
+  background: color-mix(in oklab, var(--color-accent) 20%, var(--color-surface) 80%);
+  border-color: color-mix(in oklab, var(--color-accent) 35%, transparent);
+}
+.badge--primary {
+  color: white;
+  background: color-mix(in oklab, var(--color-primary) 85%, var(--color-surface) 15%);
+  border-color: color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+
+/* Pills (for tags/skills) */
+.pill {
+  display: inline-block;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  background: var(--color-surface-1);
+  color: var(--color-text-muted);
+  border: 1px dashed color-mix(in oklab, var(--color-text) 14%, transparent);
+}
+
+/* Utility surfaces */
+.surface { background: var(--color-surface); }
+.surface-1 { background: var(--color-surface-1); }
+.surface-2 { background: var(--color-surface-2); }
+.surface-3 { background: var(--color-surface-3); }
+.muted { color: var(--color-text-muted); }
+
+/* Focus ring helper */
+.focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 35%, transparent);
+  border-radius: 8px;
+}
+
+/* Dividers */
+.divider {
+  height: 1px;
+  width: 100%;
+  background: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+/* KBD keys */
+.kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .75rem;
+  border-radius: 6px;
+  background: var(--color-surface-1);
+  border: 1px solid color-mix(in oklab, var(--color-text) 12%, transparent);
+  padding: .15rem .35rem;
+  color: var(--color-text);
+}
+
+/* Layout helpers */
+.section {
+  padding: 3rem 1rem;
+}
+.container-prose {
+  max-width: 72ch;
+  margin-inline: auto;
+}
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+/* Scrollbar and drag helpers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.dragging { cursor: grabbing; user-select: none; }
 
 /* Reveal animation (scroll-in) */
 .reveal {
@@ -102,42 +229,24 @@ a:hover::after {
   transform: translateY(0);
 }
 
-/* Typography tweaks */
-h1, h2, h3 {
-  letter-spacing: -0.02em;
-}
-.prose img {
-  border-radius: calc(var(--radius) - .5rem);
-}
-
-
-/* Carousel helper: hide scrollbars in most browsers */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.dragging { cursor: grabbing; user-select: none; }
-
-/* --- Venn Diagram styles & animation --- */
-.venn-svg {
-  color: var(--color-fg);
-}
+/* Venn diagram helpers (updated to theme tokens) */
+.venn-svg { color: var(--color-bright-accent); }
 .venn-path {
   fill: none;
   stroke: currentColor;
   stroke-width: 3;
   stroke-linecap: round;
-  /* path length ~ 816 (2πr with r=130); use round number for dash to hide initially */
   stroke-dasharray: 900;
   stroke-dashoffset: 900;
   transition: stroke-dashoffset 900ms ease;
 }
 .venn-fill {
-  fill: var(--color-accent);
+  fill: var(--color-primary);
   opacity: 0.08;
   transition: opacity .6s ease;
 }
 .venn-fill.right {
-  /* shift hue slightly using currentColor blend for contrast */
-  fill: color-mix(in oklab, var(--color-accent) 60%, currentColor 40%);
+  fill: color-mix(in oklab, var(--color-text-muted) 60%, var(--color-text) 40%);
   opacity: 0.08;
 }
 .venn-bullets text, .venn-cap {
@@ -150,21 +259,9 @@ h1, h2, h3 {
   font-weight: 600;
   opacity: .9;
 }
+.reveal[data-inview="true"] .venn-path { stroke-dashoffset: 0; }
+.reveal[data-inview="true"] .venn-fill { opacity: 0.16; }
 
-/* Animate when section enters view */
-.reveal[data-inview="true"] .venn-path {
-  stroke-dashoffset: 0;
-}
-.reveal[data-inview="true"] .venn-fill {
-  opacity: 0.16;
-}
-.reveal[data-inview="true"] .venn-bullets text {
-  animation: venn-fadein .5s ease forwards;
-}
-.reveal[data-inview="true"] .venn-bullets.intersect text {
-  animation-delay: .15s;
-}
-@keyframes venn-fadein {
-  from { opacity: 0; transform: translateY(2px); }
-  to   { opacity: .85; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }

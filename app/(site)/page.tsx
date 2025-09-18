@@ -333,16 +333,25 @@ export default function Home() {
                 <h1 className="text-4xl/tight font-bold">
                     Hello, I’m <span className="underline decoration-[var(--color-accent)]">Noah Stewart</span>.
                 </h1>
-                <p className=" opacity-90">
+                <p className="opacity-90">
                     CS + IE double major @ Georgia Tech. I am passionate about energy, AI, optimization, and statistics.
                 </p>
                 <Carousel/>
             </div>
 
+            <section className="reveal grid items-center gap-8">
+                <div className="reveal space-y-4">
+                    <h2 className="text-2xl font-semibold">My Story</h2>
+                    <p className="opacity-90">
+                        When I was 13 I started modeling solar energy with machine learning.
+                    </p>
+                </div>
+            </section>
+
             {/* NEW: Animated Venn Diagram (CS ∩ IE) */}
             <section className="reveal grid items-center gap-8 md:grid-cols-[60%_40%]">
                 <div className="venn-animate">
-                    <Venn className="max-w-3xl w-full mx-auto" />
+                    <Venn className="max-w-3xl w-full mx-auto"/>
                 </div>
                 <div className="space-y-3">
                     <h2 className="text-2xl font-semibold">Why CS and IE?</h2>
@@ -380,17 +389,17 @@ export default function Home() {
                 </div>
             </section>
 
-                {/* (Optional) Quick links */}
-                <section className="reveal grid gap-4 sm:grid-cols-2">
-                    <a href="/projects" className="rounded-xl border p-4 hover:shadow">
-                        <h3 className="font-semibold">Featured Projects →</h3>
-                        <p className="text-sm opacity-80">Case studies with measurable impact.</p>
-                    </a>
-                    <a href="/notes" className="rounded-xl border p-4 hover:shadow">
-                        <h3 className="font-semibold">Latest Notes →</h3>
-                        <p className="text-sm opacity-80">Algorithms, probability, systems.</p>
-                    </a>
-                </section>
+            {/* (Optional) Quick links */}
+            <section className="reveal grid gap-4 sm:grid-cols-2">
+                <a href="/projects" className="rounded-xl border p-4 hover:shadow">
+                    <h3 className="font-semibold">Featured Projects →</h3>
+                    <p className="text-sm opacity-80">Case studies with measurable impact.</p>
+                </a>
+                <a href="/notes" className="rounded-xl border p-4 hover:shadow">
+                    <h3 className="font-semibold">Latest Notes →</h3>
+                    <p className="text-sm opacity-80">Algorithms, probability, systems.</p>
+                </a>
             </section>
-            );
-            }
+        </section>
+    );
+}
