@@ -32,7 +32,7 @@ export default function AutoHideHeader() {
         >
             <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
                 <Link href="/" className="font-semibold text-text">Noah Stewart</Link>
-                <ul className="flex gap-4 text-sm font-stretch-condensed">
+                <ul className="flex gap-2 sm:gap-4 text-xs sm:text-sm font-stretch-condensed">
                     <li><Link href="/projects"
                               className="text-text-muted hover:text-highlight link-underline transition-colors">Projects</Link>
                     </li>
@@ -52,6 +52,7 @@ export default function AutoHideHeader() {
                               className="text-text-muted hover:text-highlight link-underline transition-colors">Contact</Link>
                     </li>
                 </ul>
+
             </nav>
         </header>
     );
