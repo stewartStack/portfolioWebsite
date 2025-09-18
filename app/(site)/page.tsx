@@ -454,12 +454,12 @@ export default function Home() {
             {/* (Optional) Quick links */}
             <section className="reveal grid gap-4 sm:grid-cols-2">
                 <a href="/projects" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
-                    <h3 className="font-semibold">Featured Projects →</h3>
-                    <p className="text-sm opacity-80">Case studies with measurable impact.</p>
+                    <h3 className="font-semibold">Projects →</h3>
+                    <p className="text-sm opacity-80">Work, school, and personal exploration.</p>
                 </a>
                 <a href="/notes" className="rounded-xl border card--hover card--muted p-4 hover:shadow-lg transition">
-                    <h3 className="font-semibold">Latest Notes →</h3>
-                    <p className="text-sm opacity-80">Algorithms, probability, systems.</p>
+                    <h3 className="font-semibold">Resume →</h3>
+                    <p className="text-sm opacity-80">My projects, experience, and skills.</p>
                 </a>
             </section>
         </section>
