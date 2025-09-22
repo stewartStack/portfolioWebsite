@@ -23,7 +23,7 @@ export default function ResumePage({
     const submitted = searchParams?.submitted === "1";
 
     return (
-        <main className="mx-auto max-w-6xl px-4 py-12">
+        <main className="mx-auto max-w-6xl px-4 py-1">
             {/* Banner */}
             {submitted && (
                 <div className="mb-6 rounded-xl border border-emerald-300/40 bg-emerald-50 p-4 text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/40 dark:text-emerald-100">

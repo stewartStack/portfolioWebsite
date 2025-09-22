@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function ContactPage({ searchParams }: { searchParams?: { sent?: string } }) {
     const sent = searchParams?.sent === "1";
     return (
-        <main className="mx-auto max-w-3xl px-4 py-12">
+        <main className="mx-auto max-w-3xl px-4 py-1">
             {sent && (
                 <div className="mb-6 rounded-xl border border-emerald-300/40 bg-emerald-50 p-4 text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/40 dark:text-emerald-100">
                     <p className="text-sm">Thanks! Your message has been sent.</p>
