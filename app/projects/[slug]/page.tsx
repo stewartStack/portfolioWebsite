@@ -44,6 +44,25 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             ) : null}
             {/* Add sections: Problem, Approach, Results, What I'd do next */}
             <p className="mt-6">{p.writeUp}</p>
+            {p.links?.length ? (
+                <section className="mt-10">
+                    <h2 className="text-lg font-semibold">Links</h2>
+                    <ul className="mt-2 space-y-1">
+                        {p.links.map(link => (
+                            <li key={link.key}>
+                                <a
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    {link.key}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            ) : null}
         </article>
     );
 }
