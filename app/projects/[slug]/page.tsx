@@ -22,15 +22,26 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </ul>
             ) : null}
             <p className="mt-6">{p.summary}</p>
-            {p.images && (
+            {p.youtubeId ? (
+                <div className="mt-6 aspect-video overflow-hidden rounded-lg border">
+                    <iframe
+                        className="h-full w-full"
+                        src={`https://www.youtube-nocookie.com/embed/${p.youtubeId}?rel=0`}
+                        title={p.title}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                    />
+                </div>
+            ) : p.images ? (
                 <Image
-                src={p.images}
-                alt={p.title}
-                width={800}
-                height={450}
-                className={"rounded-lg border"}
+                    src={p.images}
+                    alt={p.title}
+                    width={800}
+                    height={450}
+                    className="mt-6 rounded-lg border"
                 />
-            )}
+            ) : null}
             {/* Add sections: Problem, Approach, Results, What I'd do next */}
             <p className="mt-6">{p.writeUp}</p>
         </article>
