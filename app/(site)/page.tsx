@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState, useMemo } from "react";
-
+/*
 // --- Under-Construction popup (one-time per browser) ---
 function useFirstVisitFlag(key = "seenDevNotice") {
     const [open, setOpen] = useState(false);
@@ -44,7 +44,7 @@ function UnderConstructionDialog({
         </div>
     );
 }
-
+*/
 
 function shuffleArray<T>(array: T[]): T[] {
     // Create a shallow copy to avoid modifying the original array
@@ -384,12 +384,11 @@ function Venn({ className = "" }: VennProps) {
 
 export default function Home() {
     useScrollReveal();
-    const { open, dismiss } = useFirstVisitFlag("seenDevNotice");
+    //const { open, dismiss } = useFirstVisitFlag("seenDevNotice");
 
 
     return (
         <section className="space-y-16">
-            <UnderConstructionDialog open={open} onClose={dismiss} />
             {/* Hero / Carousel */}
             <div className="space-y-6">
                 <h1 className="text-4xl/tight font-bold">
