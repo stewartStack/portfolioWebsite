@@ -1,4 +1,3 @@
-// app/resume/page.tsx
 import type { Metadata } from "next";
 import Image from "next/image";
 

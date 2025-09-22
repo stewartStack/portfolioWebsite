@@ -21,7 +21,7 @@ export default function CertificationsPage() {
     const completed = certifications.filter((c) => c.status === "completed");
 
     return (
-        <main className="mx-auto max-w-5xl px-4 py-12">
+        <main className="mx-auto max-w-5xl px-4 py-1">
             {/* Hero */}
             <section className="mb-10">
                 <h1 className="text-4xl font-semibold tracking-tight">Certifications</h1>
