@@ -15,34 +15,33 @@ export type Certification = {
 export const certifications: Certification[] = [
     // --- In Progress ---
     {
-        slug: "gcp-associate-cloud-engineer",
-        name: "Associate Cloud Engineer",
-        issuer: "Google Cloud",
-        logo: "/logos/google-cloud.png",
-        proofUrl: "https://example.com/proof/gcp-associate-cloud-engineer",
-        status: "in_progress",
-        summary: "Hands-on with IAM, GCE, GKE, Cloud Storage, and network basics.",
-    },
-
-    // --- Completed (examples) ---
-    {
-        slug: "coursera-ml-specialization",
-        name: "Machine Learning Specialization",
-        issuer: "Coursera (Andrew Ng / DeepLearning.AI)",
-        logo: "/logos/coursera.png",
-        proofUrl: "https://example.com/proof/coursera-ml-specialization",
-        status: "completed",
-        issuedOn: "2024-12",
-        summary: "Supervised learning, regularization, and ML strategy foundations.",
-    },
-    {
         slug: "microsoft-az900",
         name: "Microsoft Azure Fundamentals (AZ-900)",
         issuer: "Microsoft",
-        logo: "/logos/azure.png",
-        proofUrl: "https://example.com/proof/az-900",
-        status: "completed",
-        issuedOn: "2024-05",
+        logo: "/images/logos/microsoft-certified-fundamentals-badge.svg",
+        proofUrl: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/?practice-assessment-type=certification",
+        status: "in_progress",
         summary: "Cloud concepts, Azure services, pricing, SLAs, and lifecycles.",
+    },
+    // --- Completed (examples) ---
+    {
+        slug: "coursera-linear-specialization",
+        name: "Specialization: Linear Algebra from Elementary to Advanced",
+        issuer: "Coursera + Johns Hopkins University",
+        logo: "/images/logos/jh-logo.jpg",
+        proofUrl: "https://coursera.org/share/b0d7585fd72db6a68139d5c38f16d213",
+        status: "completed",
+        issuedOn: "2024-10",
+        summary: "Linear Algebra, Applied Mathematics",
+    },
+    {
+        slug: "google-ai-specialization",
+        name: "Specialization: Introduction to Generative AI Learning Path",
+        issuer: "Coursera + Google",
+        logo: "/images/logos/google-cloud-logo.png",
+        proofUrl: "https://coursera.org/share/69f45dd8b7a72f293885e6a5c3c9ab25",
+        status: "completed",
+        issuedOn: "2024-11",
+        summary: "Generative AI, Deep Learning, Prompt Patterns, Responsible AI",
     },
 ];

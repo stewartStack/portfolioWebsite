@@ -32,6 +32,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 />
             )}
             {/* Add sections: Problem, Approach, Results, What I'd do next */}
+            <p className="mt-6">{p.writeUp}</p>
         </article>
     );
 }

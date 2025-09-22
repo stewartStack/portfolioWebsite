@@ -32,7 +32,7 @@ function UnderConstructionDialog({
             >
                 <h2 className="text-lg font-semibold mb-2">Heads up 🚧</h2>
                 <p className="text-sm opacity-80 mb-4">
-                    This site is currently under development. Some features or pages may be incomplete.
+                    This site is currently being updated. Some pages may be incomplete.
                 </p>
                 <button
                     onClick={onClose}
@@ -405,7 +405,7 @@ export default function Home() {
                 <div className="reveal space-y-4">
                     <h2 className="text-2xl font-semibold">My Story</h2>
                     <p className="opacity-90">
-                        When I was 13 I started modeling solar energy with machine learning.
+                        When I was 13 I started modeling solar energy with machine learning. I had a dream of improving renewable energy stability with the power of machine learning. This led me to teach myself programming, machine learning, and data analysis in high school. Looking back, it forged my self-starter mentality. That journey led me to develop real time renewable energy dashboards and even lead a team on a research paper during my PPL internships. Currently, at Southern Company I am developing agentic AI solutions to improve project management among other prototypes improving internal processes. At Georgia Tech, I am a double major in Computer Science (Theory and AI) and Industrial Engineering (Advanced Operations Research and Statistics). I am a men's lacrosse player and safety caption, a member of executive round table, supply chain and logistics club, and the Phi Delta Theta Fraternity.
                     </p>
                 </div>
             </section>
@@ -418,14 +418,12 @@ export default function Home() {
                 <div className="space-y-3">
                     <h2 className="text-2xl font-semibold">Why CS and IE?</h2>
                     <p className="opacity-90">
-                        This overlap is my sweet spot: production-grade software informed by optimization and
-                        statistics.
-                        The diagram draws as you scroll here, highlighting the shared toolkit I use to ship results.
+                        Studying Computer Science alongside Industrial Engineering allows me to approach problems from both a technical algorithms perspective and a systems optimization perspective. This combination equips me to design solutions that are not only intelligent, but also scalable and efficient in real-world settings.
                     </p>
                     <ul className="list-disc pl-6 opacity-90 space-y-1">
-                        <li>From algorithms to operations — models that turn into products.</li>
-                        <li>Experimentation mindset — measure, iterate, deploy.</li>
-                        <li>Energy focus — analytics + optimization that affect real grids.</li>
+                        <li>Computer Science gives me the tools to build advanced models, algorithms, and AI systems.</li>
+                        <li>Industrial Engineering ensures I can optimize workflows, resources, and decisions at scale.</li>
+                        <li>Together, they let me translate complex data into actionable, impactful solutions.</li>
                     </ul>
                 </div>
             </section>
@@ -435,18 +433,18 @@ export default function Home() {
                 <div className="reveal space-y-4">
                     <h2 className="text-2xl font-semibold">Personal philosophy</h2>
                     <ul className="list-disc pl-6 space-y-2 opacity-90">
-                        <li>Clarity over cleverness — readable systems scale.</li>
-                        <li>Measure first — tooling & telemetry guide impact.</li>
-                        <li>Make it fast — performance is a feature.</li>
+                        <li>Simplicity is key — "Good design is obvious. Great design is transparent." – Joe Sparano.</li>
+                        <li>Always keep learning — I am a Tech student after all!</li>
+                        <li>Speed matters - Sometimes the faster solution has more impact than the "perfect" solution.</li>
                     </ul>
                 </div>
                 {/* Goals */}
                 <div className="reveal space-y-4">
                     <h2 className="text-2xl font-semibold">Goals</h2>
                     <ul className="list-disc pl-6 space-y-2 opacity-90">
-                        <li>Publish energy-intermittency analyses and tooling for planners.</li>
-                        <li>Ship an interactive grid-sim demo on the web.</li>
-                        <li>Intern on applied AI/optimization teams in energy/utilities.</li>
+                        <li>Combine theory with applications. How can I use an algorithmic mindset to better solve problems?</li>
+                        <li>Become an entrepreneur. I love creating.</li>
+                        <li>Develop a unique skillset allowing me to apply CS concepts in new fields.</li>
                     </ul>
                 </div>
             </section>

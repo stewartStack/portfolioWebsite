@@ -19,9 +19,8 @@ export const projects: Project[] = [
         year: 2025,
         tags: ["energy", "python"],
         stack: ["Python"],
-        metrics: [{ label: "Peak cost ↓", value: "18%" }],
         images: "/images/projects/batteryDEFAULT.png",
-        links: { code: "https://github.com", demo: "#" }
+        writeUp: "I wrote python scripts to automate the control of kentucky's largest battery, operated by PPL Corporation. It incorporated recent research the R&D team had conducted on lithium-ion batteries to optimize safety, longevity, and efficiency. The script contained multiple operations modes, able to be controlled via a secure remote connection, and utilized object oriented programming to allow future modes to be easily added."
     },
     {
         slug: "hardest-game",
@@ -30,8 +29,7 @@ export const projects: Project[] = [
         year: 2025,
         tags: ["constrained programming", "Emulation"],
         stack: ["C"],
-        metrics: [{ label: "Peak cost ↓", value: "18%" }],
-        links: { code: "https://github.com/you/dispatch", demo: "#" }
+        writeUp: "I am still working on porting this project over."
     },
     {
         slug: "old-ML",
@@ -41,7 +39,7 @@ export const projects: Project[] = [
         tags: ["Machine Learning"],
         stack: ["Python", "R", "Pandas", "Tensorflow", "Scikit-Learn", "Pytorch", "XGBoost"],
         metrics: [{ label: "Peak cost ↓", value: "18%" }],
-        links: { code: "https://github.com/you/dispatch", demo: "#" }
+        writeUp: "I am still working on porting this project over."
     },
     {
         slug: "personal-portfolio",
@@ -51,7 +49,7 @@ export const projects: Project[] = [
         tags: ["Web Development"],
         stack: ["Next.js", "React", "TailwindCSS", "Vercel", "Typescript"],
         metrics: [{ label: "Peak cost ↓", value: "18%" }],
-        links: { code: "https://github.com/you/dispatch", demo: "#" }
+        writeUp: "I am still working on porting this project over."
     },
     {
         slug: "renew-dash",
@@ -61,6 +59,6 @@ export const projects: Project[] = [
         tags: ["Web Development", "Cloud Deployment", "Fullstack Web"],
         stack: ["React", "Vite", "Node.js", "Docker", "Google Cloud Run", "Firebase DB", "Typescript", "Javascript"],
         metrics: [{ label: "Peak cost ↓", value: "18%" }],
-        links: { code: "https://github.com/you/dispatch", demo: "#" }
+        writeUp: "I am still working on porting this project over."
     }
 ];

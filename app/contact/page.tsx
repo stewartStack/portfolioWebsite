@@ -18,7 +18,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { sent?: 
 
             <h1 className="text-3xl font-semibold tracking-tight">Contact</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-                I usually reply within a day or two.
+                I will reply as soon as I can!
             </p>
 
             <form className="mt-6 space-y-5" method="POST" action="/api/emails">

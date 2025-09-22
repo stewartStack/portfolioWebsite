@@ -1,4 +1,3 @@
-// app/certifications/page.tsx
 import type { Metadata } from "next";
 import CertificationCard from "@/components/CertificationCard";
 import { certifications } from "@/lib/certifications";
