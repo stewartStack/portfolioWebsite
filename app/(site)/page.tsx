@@ -405,8 +405,13 @@ export default function Home() {
                 <div className="reveal space-y-4">
                     <h2 className="text-2xl font-semibold">My Story</h2>
                     <p className="opacity-90">
-                        When I was 13 I started modeling solar energy with machine learning. I had a dream of improving renewable energy stability with the power of machine learning. This led me to teach myself programming, machine learning, and data analysis in high school. Looking back, it forged my self-starter mentality. That journey led me to develop real time renewable energy dashboards and even lead a team on a research paper during my PPL internships. Currently, at Southern Company I am developing agentic AI solutions to improve project management among other prototypes improving internal processes. At Georgia Tech, I am a double major in Computer Science (Theory and AI) and Industrial Engineering (Advanced Operations Research and Statistics). I am a men's lacrosse player and safety caption, a member of executive round table, supply chain and logistics club, and the Phi Delta Theta Fraternity.
-                    </p>
+                        At 13, I began modeling solar energy with machine learning,
+                        driven by a vision to improve renewable energy stability. Teaching myself programming, data analysis,
+                        and ML in high school shaped my self-starter mentality and led to my my PPL internships. During which, I developed real-time energy dashboards and co-authored a research
+                        paper. Currently, I’m developing agentic AI solutions and process-improving prototypes at Southern Company.
+                        At Georgia Tech, I’m pursuing a double major in Computer Science (Theory & AI) and Industrial Engineering (Advanced Operations Research & Statistics),
+                        while also competing as a men’s lacrosse player and engaging in leadership through Executive Round Table, Supply Chain &
+                        Logistics Club, and Phi Delta Theta.</p>
                 </div>
             </section>
 

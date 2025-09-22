@@ -12,13 +12,13 @@ export type ResearchItem = {
 
 export const research: ResearchItem[] = [
     {
-        slug: "ky-renewable-capacity-factors",
-        title: "Renewable Energy Capacity Factors in Kentucky",
-        authors: ["Noah Stewart", "Co-Author 1", "Co-Author 2"],
+        slug: "ky-renewable-research",
+        title: "Renewable Energy Generation in Kentucky: A Yearlong Performance Review",
+        authors: ["Noah Stewart", "Chad Alkire", "David Beyerle", "Declan Boyle", "Ezekiel A. Boggs", "Lawrence E. Holloway", "Aron Patrick"],
         status: "Forthcoming (2025)",
         abstract:
-            "This study analyzes solar, wind, and hydro capacity factors across Kentucky, highlighting spatial and temporal variability in renewable output and implications for economic dispatch and grid integration.",
-        tags: ["Energy Analytics", "Optimization", "Grid Simulation"],
+            "This study analyzes the performance of seven renewable energy assets within Kentucky, highlighting capacity factors, seasonal and daily trends, variability, and correlation with demand",
+        tags: ["Energy Research", "Data Analysis", "Leadership"],
         // draftUrl: "https://example.com/preprint.pdf",
         // codeUrl: "https://github.com/noahst/ky-capacity-factors",
     },

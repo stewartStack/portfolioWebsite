@@ -18,7 +18,7 @@ export default function CertificationCard({ item }: Props) {
             href={proofUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-lg hover:-translate-y-0.5 dark:border-neutral-800 dark:bg-neutral-900"
+            className="glow-accent group block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-lg hover:-translate-y-0.5 dark:border-neutral-800 dark:bg-neutral-900"
             aria-label={`${name} — ${issuer}`}
         >
             <div className="flex items-start gap-4">

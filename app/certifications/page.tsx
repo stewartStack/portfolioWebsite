@@ -24,9 +24,6 @@ export default function CertificationsPage() {
             {/* Hero */}
             <section className="mb-10">
                 <h1 className="text-4xl font-semibold tracking-tight">Certifications</h1>
-                <p className="mt-3 max-w-2xl text-pretty text-sm/6 text-muted-foreground">
-                    Proof-backed credentials. Click any card to view verification or details.
-                </p>
             </section>
 
             {/* In Progress */}

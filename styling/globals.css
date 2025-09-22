@@ -43,6 +43,14 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.glow-accent {
+  box-shadow: 0 0 12px color-mix(in oklab, var(--color-bright-accent) 40%, transparent);
+}
+
 /* Typography */
 h1, h2, h3 {
   color: var(--color-text);

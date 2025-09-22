@@ -23,7 +23,7 @@ export default function ResearchPage() {
             <section className="mb-10">
                 <h1 className="text-4xl font-semibold tracking-tight">Research</h1>
                 <p className="mt-3 text-pretty text-sm/6 text-muted-foreground">
-                    Exploring energy analytics, optimization, and applied computer science. This page will grow as new papers and preprints are released.
+                    Exploring energy analytics, optimization, and applied computer science. This page will grow as I contribute to more research.
                 </p>
             </section>
 
@@ -37,9 +37,7 @@ export default function ResearchPage() {
                 <div className="rounded-2xl border border-gray-200 p-6 dark:border-neutral-800">
                     <h2 className="text-base font-medium">More coming soon</h2>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        Actively developing follow-up work on capacity-factor variability,
-                        battery dispatch, and grid integration. Check back for preprints,
-                        slides, and code links.
+                        Actively seeking new research to join! Check back in the future for more.
                     </p>
                 </div>
             </section>

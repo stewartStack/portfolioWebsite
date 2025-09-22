@@ -6,16 +6,16 @@ type Props = {
 };
 
 const tagColors: Record<string, string> = {
-    "Energy Analytics": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
-    "Optimization": "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
-    "Grid Simulation": "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200",
+    "Energy Research": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+    "Data Analysis": "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+    "Leadership": "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200",
 };
 
 export default function ResearchCard({item}: Props) {
     const {title, authors, abstract, tags, status, draftUrl, codeUrl} = item;
 
     return (
-        <div className="max-w-3xl mx-auto p-6 rounded-2xl shadow-lg bg-white dark:bg-neutral-900">
+        <div className="glow-accent  max-w-3xl mx-auto p-6 rounded-2xl shadow-lg bg-white dark:bg-neutral-900">
             {/* Header */}
             <div className="mb-4">
                 <h2 className="text-2xl font-bold">{title}</h2>
