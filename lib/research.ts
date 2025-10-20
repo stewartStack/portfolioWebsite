@@ -6,20 +6,20 @@ export type ResearchItem = {
     status?: string;              // e.g., "Forthcoming (2025)"
     abstract: string;
     tags: string[];               // for future filters, same idea as projects
-    draftUrl?: string;            // preprint / PDF
+    URL?: string;            // preprint / PDF
     codeUrl?: string;             // repo or data link
 };
 
 export const research: ResearchItem[] = [
     {
         slug: "ky-renewable-research",
-        title: "Renewable Energy Generation in Kentucky: A Yearlong Performance Review",
-        authors: ["Noah Stewart", "Chad Alkire", "David Beyerle", "Declan Boyle", "Ezekiel A. Boggs", "Lawrence E. Holloway", "Aron Patrick"],
-        status: "Forthcoming (2025)",
+        title: "The Rhythm of Renewables: Minute-by-Minute Insights from Kentucky",
+        authors: ["David Beyerle","Noah Stewart", "Shaun Lavin", "Chad Alkire", "Heather Nikolic","Samuel Kelty", "Ezekiel A. Boggs", "Declan Boyle", "Lawrence E. Holloway", "Aron Patrick"],
+        status: "Published",
         abstract:
-            "This study analyzes the performance of seven renewable energy assets within Kentucky, highlighting capacity factors, seasonal and daily trends, variability, and correlation with demand",
+            "This paper analyzes minute-by-minute performance data from seven renewable and storage assets owned and operated by the PPL Corporation in Kentucky, including hydroelectric, solar, wind, and lithium-ion battery systems. Using a full year of synchronized, high-resolution data from multiple sites in the Commonwealth, the study examines daily and seasonal capacity factor trends, explores correlations among generation types, and evaluates their alignment with utility load profiles.",
         tags: ["Energy Research", "Data Analysis", "Leadership"],
-        // draftUrl: "https://example.com/preprint.pdf",
+        URL: "https://uknowledge.uky.edu/ece_facpub/62/",
         // codeUrl: "https://github.com/noahst/ky-capacity-factors",
     },
 ];

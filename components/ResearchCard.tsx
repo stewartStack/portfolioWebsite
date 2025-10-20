@@ -12,32 +12,46 @@ const tagColors: Record<string, string> = {
 };
 
 export default function ResearchCard({item}: Props) {
-    const {title, authors, abstract, tags, status, draftUrl, codeUrl} = item;
+    const {title, authors, abstract, tags, status, URL, codeUrl} = item;
 
     return (
         <div className="glow-accent  max-w-3xl mx-auto p-6 rounded-2xl shadow-lg bg-white dark:bg-neutral-900">
-            {/* Header */}
-            <div className="mb-4">
-                <h2 className="text-2xl font-bold">{title}</h2>
+            {/* Header: Now a flex container */}
+            <div className="mb-4 flex justify-between items-start gap-4">
+                {/* Left side: Title and Authors */}
+                <div>
+                    <h2 className="text-2xl font-bold">{title}</h2>
 
-                {/* Authors: bold your name */}
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {authors.map((a, i) => {
-                        const isYou = /noah\s*stewart/i.test(a);
-                        const nameEl = isYou ? (
-                            <span key={a + i} className="font-semibold">
-                {a}
-              </span>
-                        ) : (
-                            <span key={a + i}>{a}</span>
-                        );
-                        return (
-                            <span key={a + i}>
-                {i > 0 && ", "} {nameEl}
-              </span>
-                        );
-                    })}
-                </p>
+                    {/* Authors: bold your name */}
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {authors.map((a, i) => {
+                            const isYou = /noah\s*stewart/i.test(a);
+                            const nameEl = isYou ? (
+                                <span key={a + i} className="font-semibold">
+                    {a}
+                  </span>
+                            ) : (
+                                <span key={a + i}>{a}</span>
+                            );
+                            return (
+                                <span key={a + i}>
+                    {i > 0 && ", "} {nameEl}
+                  </span>
+                            );
+                        })}
+                    </p>
+                </div>
+
+                {/* Right side: View Paper Button */}
+                {URL && (
+                    <a
+                        href={URL}
+                        // Added flex-shrink-0 and whitespace-nowrap to keep button shape
+                        className="flex-shrink-0 whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
+                    >
+                        View Paper
+                    </a>
+                )}
             </div>
 
             {/* Body */}
@@ -67,25 +81,15 @@ export default function ResearchCard({item}: Props) {
                 )}
             </div>
 
-            {/* Footer */}
-            {(draftUrl || codeUrl) && (
+            {/* Footer: Now only contains the Code & Data button */}
+            {codeUrl && (
                 <div className="mt-6 flex gap-3">
-                    {draftUrl && (
-                        <a
-                            href={draftUrl}
-                            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
-                        >
-                            View Draft
-                        </a>
-                    )}
-                    {codeUrl && (
-                        <a
-                            href={codeUrl}
-                            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 transition"
-                        >
-                            Code & Data
-                        </a>
-                    )}
+                    <a
+                        href={codeUrl}
+                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 transition"
+                    >
+                        Code & Data
+                    </a>
                 </div>
             )}
         </div>
