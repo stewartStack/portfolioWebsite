@@ -8,23 +8,23 @@
     "start": "next start"
   },
   "dependencies": {
-    "@react-email/render": "^1.2.3",
-    "@tailwindcss/postcss": "^4.1.13",
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/og": "^0.8.5",
-    "@vercel/speed-insights": "^1.2.0",
-    "next": "15.5.3",
-    "postcss": "^8.5.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "resend": "^6.1.0",
-    "tailwindcss": "^4.1.13"
+    "@react-email/render": "^2.0.9",
+    "@tailwindcss/postcss": "^4.3.2",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/og": "^0.11.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "next": "16.2.9",
+    "postcss": "^8.5.16",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "resend": "^6.16.0",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
-    "@next/mdx": "^15.5.3",
-    "@types/node": "^20",
+    "@next/mdx": "^16.2.9",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5"
+    "typescript": "^6"
   }
 }
