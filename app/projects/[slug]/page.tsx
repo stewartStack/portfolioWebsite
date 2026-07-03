@@ -1,13 +1,21 @@
-import { projects } from "@/lib/projects";
+import { getProjects, getProjectBySlug } from "@/lib/getProjects";
 export const dynamicParams = false; // fully static
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
+    const projects = getProjects();
     return projects.map(p => ({ slug: p.slug }));
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-    const p = projects.find(x => x.slug === params.slug)!;
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+    const resolvedParams = await params;
+    const p = getProjectBySlug(resolvedParams.slug);
+
+    if (!p) {
+        notFound();
+    }
+
     return (
         <article className="prose max-w-3xl">
             <h1 className="text-balance">{p.title}</h1>
